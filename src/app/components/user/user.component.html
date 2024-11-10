@@ -1,0 +1,82 @@
+<div class="profile-container">
+  <div
+    class="cover-photo"
+    [style.backgroundImage]="
+      'url(' +
+      (user.coverPhotoUrl || '../../assets/default-cover-photo.png') +
+      ')'
+    "
+  ></div>
+
+  <div class="profile-photo-container">
+    <img
+      [src]="user.profilePhotoUrl || '../../assets/default-profile-photo.png'"
+      alt="Profile Photo"
+      class="profile-photo"
+    />
+  </div>
+
+  <div class="profile-info">
+    <h2>{{ user.name }}</h2>
+    <p>{{ user.bio }}</p>
+    <button class="challenge-btn" (click)="openChallengeModal()">
+      Challenge
+    </button>
+  </div>
+</div>
+
+<div *ngIf="showChallengeModal" class="challenge-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Challenge {{ user.name }}</h5>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="closeChallengeModal()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="challengeUser()">
+        <div class="form-group">
+          <label for="title" class="col-form-label">Title:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            [(ngModel)]="title"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="startTime" class="col-form-label">Start Time:</label>
+          <input
+            type="datetime-local"
+            id="startTime"
+            name="startTime"
+            [(ngModel)]="startTime"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="endTime" class="col-form-label">End Time:</label>
+          <input
+            type="datetime-local"
+            id="endTime"
+            name="endTime"
+            [(ngModel)]="endTime"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="modal-footer mt-3">
+          <button type="submit" class="btn btn-primary">Challenge</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

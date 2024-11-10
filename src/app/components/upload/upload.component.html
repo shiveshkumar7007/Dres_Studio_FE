@@ -1,0 +1,106 @@
+<div class="upload-container" #uploadContainer>
+  <div *ngIf="isUploadVisible" class="upload-form-container">
+    <h2>Upload Audio or Lyrics</h2>
+    <form (submit)="onSubmit()" class="upload-form">
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input
+          type="text"
+          id="title"
+          [(ngModel)]="uploadData.title"
+          name="title"
+          required
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea
+          id="description"
+          [(ngModel)]="uploadData.description"
+          name="description"
+          required
+          class="form-control"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="uploadType">Upload Type:</label>
+        <select
+          id="uploadType"
+          [(ngModel)]="uploadType"
+          name="uploadType"
+          (change)="onUploadTypeChange()"
+          class="form-control"
+        >
+          <option value="audio">Audio</option>
+          <option value="lyrics">Lyrics</option>
+        </select>
+      </div>
+
+      <div class="form-group" *ngIf="uploadType === 'audio'">
+        <label for="audio">Audio File:</label>
+        <input
+          type="file"
+          (change)="onAudioChange($event)"
+          accept="audio/*"
+          required
+          class="file-input"
+        />
+      </div>
+
+      <div class="form-group" *ngIf="uploadType === 'lyrics'">
+        <label for="lyrics">Lyrics:</label>
+        <textarea
+          id="lyrics"
+          [(ngModel)]="uploadData.lyrics"
+          name="lyrics"
+          rows="5"
+          required
+          class="form-control"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="thumbnail">Thumbnail:</label>
+        <input
+          type="file"
+          (change)="onThumbnailChange($event)"
+          class="file-input"
+        />
+      </div>
+
+      <button type="submit" class="submit-button">Upload</button>
+    </form>
+  </div>
+
+  <h2 class="mt-4">Recent Uploads</h2>
+  <div class="recent-uploads">
+    <div class="upload-card" *ngFor="let content of recentUploads">
+      <img
+        *ngIf="content.thumbnailUrl"
+        [src]="content.thumbnailUrl"
+        alt="Thumbnail"
+        class="thumbnail"
+      />
+      <div>
+        <h4>{{ content.title }}</h4>
+        <p>{{ content.description }}</p>
+        <audio
+          *ngIf="content.type === 'audio'"
+          controls
+          controlsList="nodownload"
+        >
+          <source [src]="content.fileUrl" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <pre *ngIf="content.type === 'lyrics'">{{ content.text }}</pre>
+      </div>
+    </div>
+  </div>
+
+  <button class="fab" (click)="toggleUploadSection()" aria-label="Add Upload">
+    {{ ctaText }}
+  </button>
+</div>

@@ -1,0 +1,91 @@
+<div class="challenge-container">
+  <h2>My Challenges</h2>
+  <div class="challenge-card" *ngFor="let challenge of challenges">
+    <div class="card-header">
+      <h3>{{ challenge.title }}</h3>
+      <span class="status {{ challenge.status | lowercase }}">{{
+        challenge.status | titlecase
+      }}</span>
+    </div>
+
+    <div class="card-body">
+      <p *ngIf="challenge?.isChallenged; else challengedYouText">
+        {{ challenge?.user1?.name }} challenged you
+      </p>
+      <ng-template #challengedYouText>
+        <p>You challenged {{ challenge?.user?.name }}</p>
+      </ng-template>
+      <div class="participants">
+        <div class="participant">
+          <img [src]="challenge?.user1?.profilePhotoUrl" alt="User 1" />
+          <p>{{ challenge?.user1?.name }}</p>
+        </div>
+        <div class="participant">
+          <img [src]="challenge?.user2?.profilePhotoUrl" alt="User 2" />
+          <p>{{ challenge?.user2?.name }}</p>
+        </div>
+      </div>
+
+      <div class="challenge-timing">
+        <p>
+          <strong>Start:</strong>
+          {{ challenge.startTime | date : "d MMMM Y, hh:mm:ss a" }}
+        </p>
+        <p>
+          <strong>End:</strong>
+          {{ challenge.endTime | date : "d MMMM Y, hh:mm:ss a" }}
+        </p>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="contentDropdown"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Select Content
+        </button>
+
+        <div
+          class="dropdown-menu dropdown-search"
+          aria-labelledby="contentDropdown"
+        >
+          <input
+            type="text"
+            class="form-control search-input"
+            placeholder="Search content..."
+            (input)="filterContent($event)"
+          />
+
+          <div
+            *ngFor="let item of filteredContentList"
+            class="dropdown-item content-item"
+          >
+            <img
+              src="{{ item.thumbnailUrl }}"
+              alt="Thumbnail"
+              class="thumbnail"
+            />
+            <span>{{ item.title }}</span>
+          </div>
+
+          <div
+            *ngIf="filteredContentList.length === 0"
+            class="dropdown-item no-result"
+          >
+            No results found
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="challenge.isChallenged">
+        <button class="action-btn accept">Accept</button>
+        <button class="action-btn reject">Reject</button>
+      </div>
+    </div>
+  </div>
+</div>

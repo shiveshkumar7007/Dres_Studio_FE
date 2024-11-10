@@ -1,0 +1,12 @@
+body {
+  padding-top: 60px;
+  padding-bottom: 70px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}

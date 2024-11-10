@@ -1,0 +1,23 @@
+.signup-container {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 16px;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.password-visibility-btn {
+  margin: auto;
+  margin-left: 8px !important;
+}
+
+.password-visibility-btn .fa {
+  width: 20px;
+  color: #212529;
+}

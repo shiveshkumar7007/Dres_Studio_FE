@@ -1,0 +1,135 @@
+.challenge-container {
+  max-width: 100%;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.challenge-card {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  margin: 20px auto;
+  transition: transform 0.2s;
+}
+
+.card-header {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4a4a4a;
+  color: #ffffff;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+.status.challenged {
+  background-color: #f44336;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.participants {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.participant {
+  text-align: center;
+}
+
+.participant img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-bottom: 5px;
+}
+
+.challenge-timing p {
+  margin: 5px 0;
+  font-size: 0.9em;
+}
+
+.card-footer {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: end;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+.action-btn {
+  color: #ffffff;
+  margin-left: 10px;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.action-btn:hover {
+  background-color: #333333;
+}
+
+.action-btn.accept {
+  background-color: #4caf50;
+}
+
+.action-btn.reject {
+  background-color: #f44336;
+}
+
+@media (max-width: 600px) {
+  .challenge-card {
+    max-width: 100%;
+  }
+}
+
+.dropdown-search {
+  max-height: 300px;
+  overflow-y: auto;
+  width: 130%;
+  padding: 10px;
+}
+
+.search-input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.content-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.content-item:hover {
+  background-color: #f0f0f0;
+}
+
+.thumbnail {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.no-result {
+  text-align: center;
+  color: #888;
+  padding: 8px;
+}

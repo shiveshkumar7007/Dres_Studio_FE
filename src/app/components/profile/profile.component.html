@@ -1,0 +1,42 @@
+<div class="profile-container">
+  <div
+    class="cover-photo"
+    [style.backgroundImage]="'url(' + (user.coverPhotoUrl || '../../assets/default-cover-photo.png') + ')'"
+  >
+    <label *ngIf="isEditing" class="file-upload-btn">
+      Change Cover Photo 
+      <input type="file" (change)="onCoverPhotoChange($event)" hidden />
+    </label>
+  </div>
+
+  <div class="profile-photo-container">
+    <img
+      [src]="user.profilePhotoUrl || '../../assets/default-profile-photo.png'"
+      alt="Profile Photo"
+      class="profile-photo"
+    />
+    <label *ngIf="isEditing" class="file-upload-btn">
+      Change Profile Photo
+      <input type="file" (change)="onProfilePhotoChange($event)" hidden />
+    </label>
+  </div>
+
+  <div *ngIf="!isEditing" class="profile-info">
+    <h2>{{ user.name }}</h2>
+    <p>{{ user.bio }}</p>
+    <button (click)="editProfile()">Edit Profile</button>
+  </div>
+
+  <div *ngIf="isEditing" class="profile-form">
+    <label>Name:</label>
+    <input [(ngModel)]="user.name" type="text" />
+
+    <label>Bio:</label>
+    <textarea [(ngModel)]="user.bio"></textarea>
+
+    <div class="edit-buttons">
+      <button (click)="saveProfile()">Save</button>
+      <button (click)="cancelEdit()">Cancel</button>
+    </div>
+  </div>
+</div>

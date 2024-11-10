@@ -1,0 +1,74 @@
+<div *ngIf="isLoading | async" class="loading-overlay">
+  <div class="spinner"></div>
+</div>
+
+<div
+  *ngIf="alertObject?.showAlert"
+  class="alert-box row"
+  [ngStyle]="{ 'background-color': alertObject?.color }"
+>
+  <p class="col-10">
+    {{ alertObject?.text }}
+  </p>
+  <p class="col-2 text-right">
+    <i class="fas fa-times close-icon" (click)="dismissAlert()"></i>
+  </p>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home" routerLinkActive="active"
+      >Dres Studio</a
+    >
+    <button
+      *ngIf="isLoggedIn"
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div *ngIf="isLoggedIn" class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/profile" routerLinkActive="active"
+            >Profile</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/upload" routerLinkActive="active"
+            >Upload</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/challenge" routerLinkActive="active"
+            >Challenge</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+
+<div *ngIf="playingObject?.isPlaying" class="audio-player">
+  <img
+    *ngIf="playingObject?.thumbnailUrl"
+    [src]="playingObject?.thumbnailUrl"
+    alt="Thumbnail"
+    class="thumbnail"
+  />
+  <audio #audioPlayer id="audio" controls>
+    <source [src]="playingObject?.audioUrl" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+</div>

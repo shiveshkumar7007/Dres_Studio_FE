@@ -1,0 +1,88 @@
+.dashboard-container {
+  padding: 20px;
+}
+
+h2 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+}
+
+.top-artists-container {
+  display: flex;
+  overflow-x: auto;
+  padding: 10px 0;
+  scrollbar-width: none;
+}
+
+.top-artists-container::-webkit-scrollbar {
+  display: none;
+}
+
+.artist-card {
+  min-width: 150px;
+  max-width: 150px;
+  margin-right: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.artist-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+
+.latest-releases-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.release-card {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.release-card img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.release-info {
+  padding: 10px;
+  text-align: center;
+}
+
+.release-info h3 {
+  font-size: 1.1em;
+  margin: 5px 0;
+}
+
+.release-info p {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.tag {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10%;
+  font-size: 12px;
+  z-index: 1;
+}
+
+.fa-star {
+  margin: 0;
+  margin-left: 4px;
+  color: goldenrod;
+}

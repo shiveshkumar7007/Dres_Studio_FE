@@ -1,0 +1,63 @@
+<div class="content-container" *ngIf="contentData && userData">
+  <div
+    class="cover-photo"
+    [style.backgroundImage]="
+      'url(' +
+      (userData.coverPhotoUrl || '../../../assets/default-cover-photo.png') +
+      ')'
+    "
+  >
+    <div class="profile-details" (click)="onUserClick()">
+      <img
+        [src]="userData.profilePhotoUrl"
+        alt="Profile"
+        class="profile-photo"
+      />
+      <div class="user-info">
+        <h2>{{ userData.name }}</h2>
+        <p>{{ contentData.createdAt | date : "longDate" }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-details row">
+    <div class="col col-md-6">
+      <img
+        [src]="contentData.thumbnailUrl"
+        alt="Content Thumbnail"
+        class="content-thumbnail"
+      />
+    </div>
+    <div class="col col-md-6 mt-5">
+      <h3>{{ contentData.title }}</h3>
+      <p>{{ contentData.description }}</p>
+      <div
+        *ngIf="contentData.type === 'audio'; else lyricsText"
+        class="play-btn"
+        (click)="playContent(contentData)"
+      >
+        <i class="fas fa-play"></i>
+      </div>
+      <ng-template #lyricsText>
+        <div class="lyrics-text-box">{{ contentData.text }}</div>
+      </ng-template>
+      <div class="content-rating">
+        <div *ngIf="contentRating; else notRatedYet" class="rating">
+          {{ contentRating }}
+          <i class="fas fa-star"></i>
+        </div>
+        <ng-template #notRatedYet>
+          <p>Not Rated Yet</p>
+        </ng-template>
+        <div class="rate-content">
+          <span
+            *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+            (click)="rateContent(i + 1)"
+          >
+            <i class="fas fa-star" [ngClass]="{ rated: i < currentRating }"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

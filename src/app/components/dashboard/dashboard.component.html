@@ -1,0 +1,40 @@
+<div class="dashboard-container">
+  <h2>Top Artists</h2>
+  <div class="top-artists-container">
+    <div
+      *ngFor="let artist of topArtists"
+      class="artist-card"
+      (click)="onUserClick(artist)"
+    >
+      <img
+        [src]="
+          artist.profilePhotoUrl || '../../assets/default-profile-photo.png'
+        "
+        alt="{{ artist.name }}"
+      />
+      <p>{{ artist.name }}</p>
+    </div>
+  </div>
+
+  <h2>Latest Releases</h2>
+  <div class="latest-releases-container">
+    <div
+      *ngFor="let release of latestReleases"
+      class="release-card"
+      (click)="onContentClick(release)"
+    >
+      <div class="tag">{{ release.type || "jdjdj" }}</div>
+      <img [src]="release.thumbnailUrl" alt="{{ release.title }}" />
+      <div class="release-info">
+        <h3>{{ release.title }}</h3>
+        <p>{{ release.description }}</p>
+        <p *ngIf="release.rating; else notRatedYet">
+          {{ release.rating }}<i class="fas fa-star"></i>
+        </p>
+        <ng-template #notRatedYet>
+          <p>Not Rated Yet</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

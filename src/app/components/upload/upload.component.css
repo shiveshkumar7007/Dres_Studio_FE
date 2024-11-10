@@ -1,0 +1,97 @@
+.upload-container {
+  max-width: 100%;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-control {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.file-input {
+  padding: 10px;
+  cursor: pointer;
+  border: 1px dashed #007bff;
+  background-color: #f8f9fa;
+  transition: border-color 0.3s;
+}
+
+.file-input:hover {
+  border-color: #0056b3;
+}
+
+.submit-button {
+  padding: 12px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.recent-uploads {
+  margin-top: 20px;
+}
+
+.upload-card {
+  display: flex;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.thumbnail {
+  width: 100px;
+  height: 150px;
+  margin-right: 20px;
+  object-fit: cover;
+}
+
+.upload-form-container {
+  margin-top: 20px;
+}
+
+.fab {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 35px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.fab:hover {
+  background-color: #0056b3;
+}
