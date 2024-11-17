@@ -39,7 +39,7 @@
     </div>
 
     <div class="card-footer">
-      <div class="dropdown">
+      <div *ngIf="!((challenge?.isChallenged && challenge?.user2?.contentId) || (!challenge?.isChallenged && challenge?.user1?.contentId)); else contentBox" class="dropdown">
         <button
           class="btn btn-secondary dropdown-toggle"
           type="button"
@@ -64,13 +64,14 @@
           <div
             *ngFor="let item of filteredContentList"
             class="dropdown-item content-item"
+            (click)="updateChallenge({ challengeId: challenge?._id, contentId: item?._id })"
           >
             <img
-              src="{{ item.thumbnailUrl }}"
+              src="{{ item?.thumbnailUrl }}"
               alt="Thumbnail"
               class="thumbnail"
             />
-            <span>{{ item.title }}</span>
+            <span>{{ item?.title }}</span>
           </div>
 
           <div
@@ -82,9 +83,20 @@
         </div>
       </div>
 
-      <div *ngIf="challenge.isChallenged">
-        <button class="action-btn accept">Accept</button>
-        <button class="action-btn reject">Reject</button>
+      <ng-template #contentBox>
+        <div class="content-item">
+          <img
+            src="{{ (challenge?.isChallenged ? challenge?.user2?.content?.thumbnailUrl : challenge?.user1?.content?.thumbnailUrl) }}"
+            alt="Thumbnail"
+            class="thumbnail"
+          />
+          <p>{{ (challenge?.isChallenged ? challenge?.user2?.content?.title : challenge?.user1?.content?.title) }}</p>
+        </div>
+      </ng-template>
+
+      <div *ngIf="challenge.isChallenged && challenge.status === 'challenged'">
+        <button class="action-btn accept" (click)="updateChallenge({ challengeId: challenge?._id, status: 'accepted' })">Accept</button>
+        <button class="action-btn reject" (click)="updateChallenge({ challengeId: challenge?._id, status: 'rejected' })">Reject</button>
       </div>
     </div>
   </div>

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data.service';
 import { LoadingService } from '../../services/loading.service';
+import { AlertService } from '../../services/alert.service';
+import { Constant } from '../../../constant';
 
 @Component({
   selector: 'app-challenge',
@@ -17,7 +19,8 @@ export class ChallengeComponent {
 
   constructor(
     private dataService: DataService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private alertService: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -57,4 +60,31 @@ export class ChallengeComponent {
       item.title.toLowerCase().includes(searchValue)
     );
   }
+
+  updateChallenge(params: any) {
+    const { challengeId, status, contentId } = params;
+    this.loadingService.startLoading();
+    const challengeData: any = {};
+    if (status) {
+      challengeData.status = status;
+    }
+    if (contentId) {
+      challengeData.contentId = contentId;
+    }
+    this.dataService.updateChallenge(challengeId, challengeData).subscribe({
+      next: (response) => {
+        this.loadUserChallenges();
+        this.loadingService.stopLoading();
+        this.alertService.showAlert({
+          text: response?.message,
+          color: Constant.ALERT_COLORS.SUCCESS,
+        });
+      },
+      error: (error) => {
+        console.error('Update challenge error', error);
+        this.loadingService.stopLoading();
+      },
+    });
+  }
+
 }

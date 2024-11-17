@@ -191,4 +191,21 @@ export class DataService {
       })
     );
   }
+
+  updateChallenge(challengeId: string, challengeData: any): Observable<any> {
+    const url = `${this.apiUrl}/challenge/${challengeId}`;
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('authToken') || '',
+      }),
+    };
+    return this.http.patch(url, challengeData, options).pipe(
+      catchError((error) => {
+        console.error('API error', error);
+        throw error;
+      })
+    );
+  }
+
 }
